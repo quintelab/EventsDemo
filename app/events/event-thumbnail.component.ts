@@ -9,18 +9,15 @@ import { Component, Input } from '@angular/core'
         <div>Time: {{event.time}}</div>
         <div>Price: \${{event.price}}</div>
         <div>
-            <span>Locatio: {{event.location.address}}</span>
-            <span>&nbsp;</span>
+            <span>Location: {{event.location.address}}</span>
             <span>{{event.location.city}}, {{event.location.country}}</span>
         </div>
     </div>
-    `
+    `,
+    styles: [`
+        .well div { color: #bbb; }
+    `]
 })
 export class EventThumbnailComponent {
     @Input() event:any;
-    someProperty:any = "some value";
-
-    logRahhh() {
-        console.log('rahhhh');
-    }
 }
