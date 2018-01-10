@@ -1,6 +1,6 @@
-import { Component } from '@angular/core'
-import { AuthService } from './auth.service'
-import { Router } from '@angular/router'
+import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: 'app/user/login.component.html',
@@ -10,16 +10,22 @@ import { Router } from '@angular/router'
 })
 export class LoginComponent {
 
-    constructor(private authService: AuthService, private router: Router) {
+    loginInvalid = false;
 
-    }
+    constructor(private authService: AuthService, private router: Router) { }
 
     login(formValues) {
         this.authService.loginUser(formValues.userName, formValues.password)
-        this.router.navigate(['events'])
+            .subscribe(resp => {
+                if(!resp) {
+                    this.loginInvalid = true;
+                } else {
+                    this.router.navigate(['events']);
+                }
+        });
     }
 
     cancel() {
-        this.router.navigate(['events'])
+        this.router.navigate(['events']);
     }    
 }
